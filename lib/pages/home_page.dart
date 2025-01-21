@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Toolbar(
-        title: 'Seifs test app',
+        title: 'Seifs test app',   
         actions: [
           IconButton(
             onPressed: () {},

@@ -73,7 +73,7 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text('Add Post'),
     ),
-    Center(
+    Center(  
       child: Text('Messages'),
     ),
     ProfilePage(),
