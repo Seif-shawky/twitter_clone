@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: Toolbar(
         title: 'Profile',
-        actions: [
+        actions: [ 
           PopupMenuButton<ProfileMenu>(
             itemBuilder: (context) {
               return [
