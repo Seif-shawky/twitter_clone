@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> {
               label: 'home'),
           BottomNavigationBarItem(
               icon: Opacity(
-                  opacity: 0.4,
+                  opacity: 0.35,
                   child: SvgPicture.asset(
                     'imageassets/favorite-svgrepo-com.svg',
                     height: 28,
@@ -35,13 +35,13 @@ class _MainPageState extends State<MainPage> {
               label: 'fav'),
           BottomNavigationBarItem(
               icon: Opacity(
-                  opacity: 0.6,
+                  opacity: 0.9,
                   child: SvgPicture.asset(
                       'imageassets/add-circle-svgrepo-com.svg')),
               label: 'add post'),
           BottomNavigationBarItem(
               icon: Opacity(
-                  opacity: 0.5,
+                  opacity: 0.4,
                   child: SvgPicture.asset(
                       'imageassets/messages-3-svgrepo-com.svg')),
               label: 'messages'),
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
               icon: Opacity(
                   opacity: 0.5,
                   child: SvgPicture.asset('imageassets/user-svgrepo-com.svg')),
-              label: 'add'),
+              label: 'profile'),
         ],
         currentIndex: currentIndex,
         onTap: (index) {
@@ -73,7 +73,7 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text('Add Post'),
     ),
-    Center(  
+    Center(
       child: Text('Messages'),
     ),
     ProfilePage(),

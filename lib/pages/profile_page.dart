@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:projectbased/components/tool_bar.dart';
-import 'package:projectbased/pages/edit_page.dart';
+import 'package:projectbased/components/user_avatar.dart';
+import 'package:projectbased/config/app_routes.dart';
 import 'package:projectbased/styles/app_text.dart';
 
 enum ProfileMenu { edit, logout }
@@ -15,13 +14,13 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: Toolbar(
         title: 'Profile',
-        actions: [ 
+        actions: [
           PopupMenuButton<ProfileMenu>(
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
                   onTap: () {
-                    Navigator.of(context).pushNamed('/edit');
+                    Navigator.of(context).pushNamed(AppRoutes.edit);
                   },
                   child: Text('edit'),
                 ),
@@ -35,13 +34,11 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            child: Image.asset(
-              'imageassets/woman.png',
-              height: 90,
-              width: 90,
-            ),
+          SizedBox(
+            height: 15,
+          ),
+          UserAvatar(
+            size: 110,
           ),
           SizedBox(
             height: 24,

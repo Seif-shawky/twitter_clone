@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projectbased/components/post_item.dart';
 import 'package:projectbased/components/tool_bar.dart';
-import 'package:projectbased/styles/app_colors.dart';
-import 'package:projectbased/styles/app_text.dart';
+
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
