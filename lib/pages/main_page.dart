@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projectbased/model/user.dart';
 import 'package:projectbased/pages/home_page.dart';
 import 'package:projectbased/pages/profile_page.dart';
 import 'package:projectbased/styles/app_colors.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final User user;
+  const MainPage({super.key, required this.user});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -17,7 +19,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        body: pages[currentIndex.index],
+        body: pages()[currentIndex.index],
         bottomNavigationBar: MyBottomNavigation(
           currentIndex: currentIndex,
           onTap: (Menus value) {
@@ -28,7 +30,7 @@ class _MainPageState extends State<MainPage> {
         ));
   }
 
-  final pages = [
+ pages() => [
     HomePage(),
     Center(
       child: Text('Favorite'),
@@ -39,7 +41,7 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text('Messages'),
     ),
-    ProfilePage(),
+    ProfilePage(user: widget.user,),
   ];
 }
 

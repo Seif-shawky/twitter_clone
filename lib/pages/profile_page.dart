@@ -1,13 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:projectbased/components/tool_bar.dart';
 import 'package:projectbased/components/user_avatar.dart';
 import 'package:projectbased/config/app_routes.dart';
+import 'package:projectbased/model/user.dart';
 import 'package:projectbased/styles/app_text.dart';
 
 enum ProfileMenu { edit, logout }
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final User user;
+  const ProfilePage({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,7 @@ class ProfilePage extends StatelessWidget {
             height: 24,
           ),
           Text(
-            'Seif Shawky',
+            '${user.firstname} ${user.lastname}',
             style: AppText.header2,
           ),
           SizedBox(
