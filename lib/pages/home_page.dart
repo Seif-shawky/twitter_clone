@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projectbased/components/post_item.dart';
 import 'package:projectbased/components/tool_bar.dart';
 
-
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
@@ -13,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Toolbar(
-        title: 'Seifs test app',   
+        title: 'Seifs test app',
         actions: [
           IconButton(
             onPressed: () {},
