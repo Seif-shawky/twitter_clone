@@ -6,8 +6,9 @@ import 'package:projectbased/pages/profile_page.dart';
 import 'package:projectbased/styles/app_colors.dart';
 
 class MainPage extends StatefulWidget {
-  final User user;
-  const MainPage({super.key, required this.user});
+  const MainPage({
+    super.key,
+  });
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -19,7 +20,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        body: pages()[currentIndex.index],
+        body: pages[currentIndex.index],
         bottomNavigationBar: MyBottomNavigation(
           currentIndex: currentIndex,
           onTap: (Menus value) {
@@ -30,19 +31,19 @@ class _MainPageState extends State<MainPage> {
         ));
   }
 
- pages() => [
-    HomePage(),
-    Center(
-      child: Text('Favorite'),
-    ),
-    Center(
-      child: Text('Add Post'),
-    ),
-    Center(
-      child: Text('Messages'),
-    ),
-    ProfilePage(user: widget.user,),
-  ];
+  final pages = [
+        HomePage(),
+        Center(
+          child: Text('Favorite'),
+        ),
+        Center(
+          child: Text('Add Post'),
+        ),
+        Center(
+          child: Text('Messages'),
+        ),
+        ProfilePage(),
+      ];
 }
 
 enum Menus { home, favorite, add, messages, user }

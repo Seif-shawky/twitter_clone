@@ -8,17 +8,7 @@ class AppRoutes {
   static final pages = {
     '/': (context) => LoginPage(),
     '/home': (context) => HomePage(),
-    '/main': (context) => MainPage(
-          user: User(
-            1,
-            'firstname',
-            'lastname',
-            'mobile',
-            'birthday',
-            'gender',
-            false,
-          ),
-        ),
+    '/main': (context) => MainPage(),
     '/edit': (context) => EditProfile(),
   };
   static const login = '/';

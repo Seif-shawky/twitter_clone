@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:projectbased/config/app_routes.dart';
 import 'package:projectbased/model/user.dart';
 import 'package:projectbased/pages/home_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:projectbased/pages/main_page.dart';
+import 'package:projectbased/user_provider.dart';
 
 const baseurl = 'https://8e36791b-bae9-4235-a3c3-4437367edd37.mock.pstmn.io';
 
@@ -85,14 +87,9 @@ class LoginPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       final user = await dologin();
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) {
-                            return MainPage(user: user,);
-                          },
-                        ),
-                      );
+                      UserProvider.of(context)?.updateUser(user);
+                      Navigator.of(context)
+                          .pushReplacementNamed(AppRoutes.main);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.amber,
@@ -198,24 +195,5 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Future<User> dologin() async {
-    final body = {
-      'username': username,
-      'passowrd': password,
-    };
-    final response = await http.post(
-      Uri.parse(loginroute),
-      body: jsonEncode(body),
-    );
-    if (response.statusCode == 200) {
-      print(response.body);
-      final json = jsonDecode(response.body);
-      final user = User.fromJson(json['data']);
-      return user;
-    } else {
-      print(response.body);
-      print('you have error');
-      throw Exception('error');
-    }
-  }
+  
 }
