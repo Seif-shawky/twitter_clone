@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:projectbased/model/user.dart';
+import 'package:projectbased/data/model/user.dart';
 import 'package:projectbased/pages/home_page.dart';
 import 'package:projectbased/pages/profile_page.dart';
 import 'package:projectbased/styles/app_colors.dart';

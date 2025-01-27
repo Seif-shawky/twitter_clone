@@ -1,19 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:projectbased/config/app_routes.dart';
-import 'package:projectbased/model/user.dart';
-import 'package:projectbased/pages/home_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:projectbased/pages/main_page.dart';
-import 'package:projectbased/user_provider.dart';
-
-const baseurl = 'https://8e36791b-bae9-4235-a3c3-4437367edd37.mock.pstmn.io';
+import 'package:projectbased/providor/app_repo.dart';
+import 'package:projectbased/providor/login_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
-  final loginroute = '$baseurl/login';
-  var username = '';
-  var password = '';
   LoginPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -46,7 +37,7 @@ class LoginPage extends StatelessWidget {
                 Spacer(),
                 TextField(
                   onChanged: (value) {
-                    username = value;
+                    context.read<LoginProvider>().username = value;
                   },
                   decoration: InputDecoration(
                       hintText: 'username',
@@ -60,7 +51,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 TextField(
                   onChanged: (value) {
-                    password = value;
+                    context.read<LoginProvider>().password = value;
                   },
                   decoration: InputDecoration(
                       hintText: 'password',
@@ -85,11 +76,14 @@ class LoginPage extends StatelessWidget {
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () async {
-                      final user = await dologin();
-                      UserProvider.of(context)?.updateUser(user);
-                      Navigator.of(context)
-                          .pushReplacementNamed(AppRoutes.main);
+                    onPressed: () {
+                      context.read<LoginProvider>().login().then((value) {
+                        context.read<AppRepo>().user = value.user;
+                        context.read<AppRepo>().token = value.token;
+                        Navigator.of(
+                          context,
+                        ).pushReplacementNamed(AppRoutes.main);
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.amber,
@@ -194,6 +188,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
-  
 }

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:projectbased/config/app_routes.dart';
-import 'package:projectbased/model/user.dart';
+import 'package:projectbased/data/model/user.dart';
 import 'package:projectbased/providor/app_repo.dart';
+import 'package:projectbased/providor/post_provider.dart';
 import 'package:projectbased/styles/app_colors.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider<AppRepo>(
-      create: (context) => AppRepo(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppRepo>(
+          create: (context) => AppRepo(),
+        ), // ChangeNotifierProvider
+        ChangeNotifierProvider<PostProvider>(
+          create: (context) => PostProvider(),
+        ), // ChangeNotifierProvider
+      ],
       child: MyApp(),
-    ),
+    ), // MultiProvider
   );
 }
 

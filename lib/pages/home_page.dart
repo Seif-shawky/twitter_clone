@@ -2,13 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projectbased/components/post_item.dart';
 import 'package:projectbased/components/tool_bar.dart';
+import 'package:projectbased/providor/post_provider.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
-  final List<String> users = List.generate(10, (index) => 'user $index');
-
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PostProvider>().getPost();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Toolbar(
@@ -23,25 +33,23 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return postitem(
-            user: users[index],
-          );
-        },
-        itemCount: users.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            height: 9,
+      body: Consumer<PostProvider>(
+        builder: (context, value, child) {
+          return ListView.separated(
+            itemBuilder: (context, index) {
+              return postitem(
+                post: value.list[index],
+              );
+            },
+            itemCount: value.list.length,
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 9,
+              );
+            },
           );
         },
       ),
     );
-  }
-
-  mockUsersFromServer() {
-    for (var i = 0; i < (10); i++) {
-      users.add('user number $i');
-    }
   }
 }

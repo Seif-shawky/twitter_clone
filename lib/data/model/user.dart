@@ -1,5 +1,5 @@
 class User {
-  final int id;
+  // final int id;
   final String? firstname;
   final String? lastname;
   final String? mobile;
@@ -8,7 +8,7 @@ class User {
   final bool? visibleGender;
 
   User(
-    this.id,
+    // this.id,
     this.firstname,
     this.lastname,
     this.mobile,
@@ -18,7 +18,7 @@ class User {
   );
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        json['id'],
+        // json['id'],
         json['firstname'],
         json['lastname'],
         json['mobile'],

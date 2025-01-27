@@ -9,14 +9,16 @@ class LoginService {
   final String password;
 
   LoginService(this.username, this.password);
-  Future<LoginResponse> call() async{
-    final result = await  http.post(
+  Future<LoginResponse> call() async {
+    final result = await http.post(
       Uri.parse('${AppConfig.baseUrl}/login'),
-    
-    body: jsonEncode({
-      'username' : username,
-      'password' : password,
-    },),);
+      body: jsonEncode(
+        {
+          'username': username,
+          'password': password,
+        },
+      ),
+    );
     return LoginResponse.fromJson(jsonDecode(result.body));
   }
 }

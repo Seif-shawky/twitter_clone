@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:projectbased/config/app_config.dart';
+import 'package:projectbased/data/model/post.dart';
 import 'package:projectbased/styles/app_text.dart';
 
 class postitem extends StatelessWidget {
-  final String user;
-  const postitem({super.key, required this.user});
+  final Post post;
+  const postitem({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +25,18 @@ class postitem extends StatelessWidget {
                 width: 16,
               ),
               Text(
-                user,
+                '${post.owner?.firstname} ${post.owner?.lastname}',
                 style: AppText.subtitle3,
               ),
             ],
           ),
           SizedBox(height: 12),
-          Image.asset('imageassets/images.jpeg'),
+          Image.network('${AppConfig.baseUrl} ${post.image}'),
           SizedBox(
             height: 14,
           ),
           Text(
-            'yes yea what eva',
+            post.message ?? '',
             style: AppText.subtitle3,
           ),
           SizedBox(
