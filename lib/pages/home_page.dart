@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
     context.read<PostProvider>().getPost();
   }
 
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Toolbar(

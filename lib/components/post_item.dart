@@ -30,17 +30,16 @@ class postitem extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12),
-          Image.network('${AppConfig.baseUrl} ${post.image}'),
+          if (post.image != null) ...[
+            SizedBox(height: 12),
+            Image.network('${AppConfig.baseUrl} ${post.image}'),
+          ],
           SizedBox(
-            height: 14,
+            height: 12,
           ),
           Text(
             post.message ?? '',
             style: AppText.subtitle3,
-          ),
-          SizedBox(
-            height: 12,
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projectbased/components/new_post_modal.dart';
 import 'package:projectbased/data/model/user.dart';
 import 'package:projectbased/pages/home_page.dart';
 import 'package:projectbased/pages/profile_page.dart';
@@ -23,7 +24,18 @@ class _MainPageState extends State<MainPage> {
         body: pages[currentIndex.index],
         bottomNavigationBar: MyBottomNavigation(
           currentIndex: currentIndex,
-          onTap: (Menus value) {
+          onTap: (value) {
+            if (value == Menus.add) {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) {
+                  return NewPostModal();
+                },
+              );
+              return;
+            }
             setState(() {
               currentIndex = value;
             });
@@ -32,18 +44,18 @@ class _MainPageState extends State<MainPage> {
   }
 
   final pages = [
-        HomePage(),
-        Center(
-          child: Text('Favorite'),
-        ),
-        Center(
-          child: Text('Add Post'),
-        ),
-        Center(
-          child: Text('Messages'),
-        ),
-        ProfilePage(),
-      ];
+    HomePage(),
+    Center(
+      child: Text('Favorite'),
+    ),
+    Center(
+      child: Text('Add Post'),
+    ),
+    Center(
+      child: Text('Messages'),
+    ),
+    ProfilePage(),
+  ];
 }
 
 enum Menus { home, favorite, add, messages, user }
